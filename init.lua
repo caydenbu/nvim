@@ -9,6 +9,9 @@ vim.o.expandtab = true
 require("config.lazy")
 require("lazy").setup("plugins")
 
+-- Personal Plugins
+require("local-plugins.open-browser");
+
 -- Remaps
 
 -- Window Resize
