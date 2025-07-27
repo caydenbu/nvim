@@ -1,4 +1,4 @@
--- For opening html files in browser for mad
+-- For opening html files in browser for mac
 function openBrowser()
     local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
     if path == "" then
