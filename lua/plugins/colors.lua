@@ -1,24 +1,18 @@
 return {
     {
-        "rebelot/kanagawa.nvim",
-        name = "kanagawa",
-        priority = 1000, -- ensure it loads before others
+        "rose-pine/neovim",
+        name = "rose-pine",
+        priority = 1000,      -- ensure it loads before others
         opts = {
-            theme = "dragon",
-            transparent = true,
-            background = {
-                dark = "dragon",
+            variant = "main", -- or "moon" / "dawn"
+            dark_variant = "main",
+            styles = {
+                transparency = true,
             },
-            overrides = function(colors)
-                return {
-                    LineNr = { bg = "none" },
-                    SignColumn = { bg = "none" },
-                }
-            end
         },
         config = function(_, opts)
-            require("kanagawa").setup(opts)
-            vim.cmd.colorscheme("kanagawa")
+            require("rose-pine").setup(opts)
+            vim.cmd.colorscheme("rose-pine")
         end,
     },
 }
