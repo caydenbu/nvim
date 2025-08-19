@@ -13,6 +13,10 @@ require("lazy").setup("plugins")
 require("local-plugins.open-browser");
 
 -- Remaps
+vim.keymap.set("n", "<leader>ng", "<cmd>Neogit<CR>", { desc = "Open Neogit" })
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle floating terminal" })
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+vim.keymap.set({ "n", "t" }, "<leader>tq", "<cmd>ToggleTermToggleAll<CR>", { desc = "Quit all terminals" })
 
 -- Window Resize
 vim.keymap.set("n", "<S-Up>", ":resize -2<CR>", {})
