@@ -23,23 +23,22 @@ return {
         opts = {
             kind = "floating"
         },
-        {
-            "lewis6991/gitsigns.nvim",
-            opts = {
-                signs      = {
-                    add          = { text = "│" },
-                    change       = { text = "│" },
-                    delete       = { text = "_" },
-                    topdelete    = { text = "‾" },
-                    changedelete = { text = "~" },
-                },
-                signcolumn = true, -- Toggle with :Gitsigns toggle_signs
-                numhl      = false,
-                linehl     = false,
-                word_diff  = false,
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        opts = {
+            signs      = {
+                add          = { text = "│" },
+                change       = { text = "│" },
+                delete       = { text = "_" },
+                topdelete    = { text = "‾" },
+                changedelete = { text = "~" },
             },
-        }
-
+            signcolumn = true, -- Toggle with :Gitsigns toggle_signs
+            numhl      = false,
+            linehl     = false,
+            word_diff  = false,
+        },
     },
     -- autopairs
     {
