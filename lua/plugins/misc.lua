@@ -132,5 +132,9 @@ return {
                 direction = "float",
             }
         }
+    },
+    -- Fixes vim commands not being reconized by lsp
+    {
+        "folke/neodev.nvim", opts = {}
     }
 }
