@@ -1,9 +1,8 @@
-return { -- Highlight, edit, and navigate code
+return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	main = "nvim-treesitter.configs",
-	opts = {
-		ensure_installed = {
+	config = function()
+		require("nvim-treesitter.install").install({
 			"lua",
 			"javascript",
 			"typescript",
@@ -17,11 +16,6 @@ return { -- Highlight, edit, and navigate code
 			"html",
 			"c",
 			"cpp",
-		},
-		auto_install = true,
-		highlight = {
-			enable = true,
-		},
-		indent = { enable = false },
-	},
+		})
+	end,
 }
