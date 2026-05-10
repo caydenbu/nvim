@@ -1,5 +1,4 @@
 # My neovim config
---- 
 
 ## You Made Need to Install:
 
