@@ -125,10 +125,15 @@ return {
 			},
 		},
 	},
-	-- Fixes vim commands not being reconized by lsp
+	-- Neovim Lua type annotations for lua_ls
 	{
-		"folke/neodev.nvim",
-		opts = {},
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",

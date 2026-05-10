@@ -206,9 +206,6 @@ return {
         --    :Mason
 
 
-        require("neodev").setup({})
-        --  You can press `g?` for help in this menu.
-
         require("mason").setup()
 
         -- You can add other tools here that you want Mason to install
