@@ -1,5 +1,11 @@
-My neovim config
+# My neovim config
+--- 
 
-You need ripgrep for grep, and gcc or any other c compiler for Mason/LSP
-Install other needed LSP's through MasonInstall
-Also install Formatters through MasonInstall if you want them (prettier, stylua, clang-format, etc)
+## You Made Need to Install:
+
+- **ripgrep** for grep/telescope
+- **gcc**, or another c compiler, for Mason/LSP
+- **treesitter-cli** for Nvim Treesitter
+
+-  other needed **LSP's** through MasonInstall
+-  **Formatters** through MasonInstall if you want them (prettier, stylua, clang-format, etc)
