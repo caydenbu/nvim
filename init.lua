@@ -7,7 +7,6 @@ vim.o.expandtab = true
 
 -- Lazy Setup
 require("config.lazy")
-require("lazy").setup("plugins")
 
 -- Personal Plugins
 require("local-plugins.open-browser")
