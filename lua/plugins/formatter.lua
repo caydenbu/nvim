@@ -24,7 +24,7 @@ return {
 
 			-- Format on save
 			on_attach = function(client, bufnr)
-				if client.supports_method("textDocument/formatting") then
+				if client:supports_method("textDocument/formatting") then
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
 						callback = function()
