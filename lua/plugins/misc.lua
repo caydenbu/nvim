@@ -1,145 +1,144 @@
 -- random plugins with little lines
 return {
-
-	-- git plugins
-	{
-		"tpope/vim-fugitive",
-	},
-	{
-		"tpope/vim-rhubarb",
-	},
-	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"sindrets/diffview.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-		opts = {
-			kind = "floating",
-		},
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "│" },
-				change = { text = "│" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-			signcolumn = true, -- Toggle with :Gitsigns toggle_signs
-			numhl = false,
-			linehl = false,
-			word_diff = false,
-		},
-	},
-	-- autopairs
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
-	},
-	-- discord rich pressence
-	{
-		"IogaMaster/neocord",
-		even = "VeryLazy",
-	},
-	-- welcome page
-	{
-		"goolord/alpha-nvim",
-		dependencies = {
-			"echasnovski/mini.icons",
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("alpha").setup(require("alpha.themes.theta").config)
-		end,
-	},
-	-- surround words
-	{
-		"kylechui/nvim-surround",
-		version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({
-				surrounds = {
-					["("] = {
-						add = { "(", ")" },
-					},
-					[")"] = {
-						add = { "(", ")" },
-					},
-					["["] = {
-						add = { "[", "]" },
-					},
-					["]"] = {
-						add = { "[", "]" },
-					},
-					["{"] = {
-						add = { "{", "}" },
-					},
-					["}"] = {
-						add = { "{", "}" },
-					},
-					[">"] = {
-						add = { "<", ">" },
-					},
-				},
-			})
-		end,
-	},
-	-- Comments
-	{
-		"numToStr/Comment.nvim",
-		opts = {},
-	},
-	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
-	},
-	-- which-key
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		opts = {},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
-			},
-		},
-	},
-	-- Toggle Term
-	{
-		{
-			"akinsho/toggleterm.nvim",
-			version = "*",
-			opts = {
-				direction = "float",
-			},
-		},
-	},
-	-- Neovim Lua type annotations for lua_ls
-	{
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = {
-			library = {
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
-	},
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
-		---@module 'render-markdown'
-		---@type render.md.UserConfig
-		opts = {},
-	},
+  -- git plugins
+  {
+    "tpope/vim-fugitive",
+  },
+  {
+    "tpope/vim-rhubarb",
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      kind = "floating",
+    },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "│" },
+        change = { text = "│" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+      },
+      signcolumn = true, -- Toggle with :Gitsigns toggle_signs
+      numhl = false,
+      linehl = false,
+      word_diff = false,
+    },
+  },
+  -- autopairs
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+  },
+  -- discord rich pressence
+  {
+    "IogaMaster/neocord",
+    event = "VeryLazy",
+  },
+  -- welcome page
+  {
+    "goolord/alpha-nvim",
+    dependencies = {
+      "echasnovski/mini.icons",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("alpha").setup(require("alpha.themes.theta").config)
+    end,
+  },
+  -- surround words
+  {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        surrounds = {
+          ["("] = {
+            add = { "(", ")" },
+          },
+          [")"] = {
+            add = { "(", ")" },
+          },
+          ["["] = {
+            add = { "[", "]" },
+          },
+          ["]"] = {
+            add = { "[", "]" },
+          },
+          ["{"] = {
+            add = { "{", "}" },
+          },
+          ["}"] = {
+            add = { "{", "}" },
+          },
+          [">"] = {
+            add = { "<", ">" },
+          },
+        },
+      })
+    end,
+  },
+  -- Comments
+  {
+    "numToStr/Comment.nvim",
+    opts = {},
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  -- which-key
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
+  -- Toggle Term
+  {
+    {
+      "akinsho/toggleterm.nvim",
+      version = "*",
+      opts = {
+        direction = "float",
+      },
+    },
+  },
+  -- Neovim Lua type annotations for lua_ls
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
 }

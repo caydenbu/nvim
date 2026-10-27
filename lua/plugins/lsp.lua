@@ -133,9 +133,9 @@ return {
                 --
                 -- This may be unwanted, since they displace some of your code
                 if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-                    map("<leader>th", function()
+                    map("<leader>ti", function()
                         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-                    end, "[T]oggle Inlay [H]ints")
+                    end, "[T]oggle [I]nlay hints")
                 end
             end,
         })
@@ -171,6 +171,17 @@ return {
             html = {},
             cssls = {},
             jsonls = {},
+            pylsp = {
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            -- pylsp-ruff comes in from the system (anaconda) site-packages and
+                            -- can't find ruff inside mason's venv, so point it at the real binary
+                            ruff = { enabled = true, executable = vim.fn.exepath("ruff") },
+                        },
+                    },
+                },
+            },
             lua_ls = {
                 -- cmd = {...},
                 -- filetypes = { ...},
@@ -181,12 +192,9 @@ return {
                             callSnippet = "Replace",
                         },
                         runtime = { version = "LuaJIT" },
+                        -- Runtime/plugin libraries are handled by lazydev.nvim
                         workspace = {
                             checkThirdParty = false,
-                            library = {
-                                "${3rd}/luv/library",
-                                unpack(vim.api.nvim_get_runtime_file("", true)),
-                            },
                         },
                         diagnostics = {
                             globals = { "vim" },
@@ -213,20 +221,22 @@ return {
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
             "stylua", -- Used to format Lua code
+            "prettier", -- Used to format web files
+            "clang-format", -- Used to format C/C++
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-        require("mason-lspconfig").setup({
-            handlers = {
-                function(server_name)
-                    local server = servers[server_name] or {}
-                    -- This handles overriding only values explicitly passed
-                    -- by the server configuration above. Useful when disabling
-                    -- certain features of an LSP (for example, turning off formatting for tsserver)
-                    server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                    require("lspconfig")[server_name].setup(server)
-                end,
-            },
-        })
+        -- Show diagnostic messages inline (off by default since Neovim 0.11)
+        vim.diagnostic.config({ virtual_text = true, severity_sort = true })
+
+        -- Apply capabilities to every server, plus any per-server overrides from above.
+        -- mason-lspconfig v2 ignores `handlers` and enables installed servers via vim.lsp.enable
+        vim.lsp.config("*", { capabilities = capabilities })
+        for server_name, server in pairs(servers) do
+            vim.lsp.config(server_name, server)
+        end
+
+        -- stylua is only used as a formatter through none-ls, not as an LSP server
+        require("mason-lspconfig").setup({ automatic_enable = { exclude = { "stylua" } } })
     end,
 }

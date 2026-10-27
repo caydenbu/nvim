@@ -13,7 +13,7 @@ return {
 
 				-- Stylua for Lua
 				null_ls.builtins.formatting.stylua.with({
-					extra_args = { "--tab-width", "2", "--use-tabs", "false" },
+					extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
 				}),
 
 				-- Clang-format for C/C++
@@ -28,7 +28,13 @@ return {
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
 						callback = function()
-							vim.lsp.buf.format({ bufnr = bufnr })
+							-- Only use none-ls so LSP servers' formatters don't fight prettier/stylua
+							vim.lsp.buf.format({
+								bufnr = bufnr,
+								filter = function(c)
+									return c.name == "null-ls"
+								end,
+							})
 						end,
 					})
 				end
